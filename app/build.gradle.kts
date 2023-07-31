@@ -7,6 +7,10 @@ android {
     namespace = "com.ws.simplesegmentcalculator"
     compileSdk = 33
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.ws.simplesegmentcalculator"
         minSdk = 28
