@@ -7,6 +7,7 @@ android {
     namespace = "com.ws.simplesegmentcalculator"
     compileSdk = 33
 
+    // add  viewBinding
     buildFeatures {
         viewBinding = true
     }
