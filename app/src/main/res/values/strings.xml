@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Simple Segment Сalculator</string>
+    <string name="diameter">Outer Diameter, mm</string>
+    <string name="diameter_helper_text">Outer Diameter, mm</string>
+    <string name="width">Ring Width, mm</string>
+    <string name="count">Count Segment, pc</string>
 </resources>
