@@ -3,5 +3,6 @@
     <string name="diameter">Outer Diameter, mm</string>
     <string name="diameter_helper_text">Outer Diameter, mm</string>
     <string name="width">Ring Width, mm</string>
-    <string name="count">Count Segment, pc</string>
+    <string name="count">Count Segment, pcs</string>
+    <string name="allowancePerSide">Allowance Per Side, mm</string>
 </resources>

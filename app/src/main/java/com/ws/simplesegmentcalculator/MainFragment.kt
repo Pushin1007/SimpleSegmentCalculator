@@ -25,9 +25,7 @@ class MainFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(): MainFragment {
-            return MainFragment()
-        }
+        fun newInstance(): MainFragment = MainFragment()
     }
 
     override fun onDestroy() {

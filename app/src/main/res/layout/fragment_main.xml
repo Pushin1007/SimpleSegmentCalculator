@@ -5,11 +5,27 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85"
+        />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputOuterDiameter"
@@ -20,15 +36,24 @@
         android:padding="@dimen/padding_main"
         app:endIconCheckable="true"
         app:endIconMode="custom"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputOuterDiameterVal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintTop_toTopOf="@id/inputOuterDiameter"
+        app:layout_constraintBottom_toBottomOf="@id/inputOuterDiameter"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputRingWidth"
@@ -39,15 +64,53 @@
         android:padding="@dimen/padding_main"
         app:endIconCheckable="true"
         app:endIconMode="custom"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/inputOuterDiameter" >
+        app:layout_constraintTop_toBottomOf="@id/inputOuterDiameter">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputRingWidthVal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintTop_toTopOf="@id/inputRingWidth"
+        app:layout_constraintBottom_toBottomOf="@id/inputRingWidth"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputAllowancePerSide"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/allowancePerSide"
+        android:padding="@dimen/padding_main"
+        app:endIconCheckable="true"
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/inputRingWidth">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputAllowancePerSideVal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="S"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintTop_toTopOf="@id/inputAllowancePerSide"
+        app:layout_constraintBottom_toBottomOf="@id/inputAllowancePerSide"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputCountSegment"
@@ -58,14 +121,25 @@
         android:padding="@dimen/padding_main"
         app:endIconCheckable="true"
         app:endIconMode="custom"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/inputRingWidth" >
+        app:layout_constraintTop_toBottomOf="@id/inputAllowancePerSide">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputCountSegmentVal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="N"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
+        app:layout_constraintTop_toTopOf="@id/inputCountSegment"
+        app:layout_constraintBottom_toBottomOf="@id/inputCountSegment"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
