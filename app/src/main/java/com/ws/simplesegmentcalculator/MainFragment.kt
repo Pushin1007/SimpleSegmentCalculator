@@ -1,14 +1,17 @@
 package com.ws.simplesegmentcalculator
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.ws.simplesegmentcalculator.databinding.FragmentMainBinding
+
 
 class MainFragment : Fragment() {
 
@@ -16,6 +19,8 @@ class MainFragment : Fragment() {
     private var a2Rad: Double = 0.0 //половинный угол сегмента в радианах
     private var radiusBlank: Double = 0.0//наружный радиус заготовки с припуском
     private var widthBlank: Double = 0.0//ширина кольца (заготовки) с припуском
+
+
 
     private lateinit var segment : Segment
 
@@ -46,7 +51,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.appCompatImageView.setOnClickListener {
-
+            keybordHide(parentActivity,binding.focusConteiner)// скрываем клавиатуру и убираем фокус
             //получаем данные введенные пользователем
             val outerDiameter =
                 binding.inputOuterDiameterVal.text.toString().toDoubleOrNull() //наружный диаметр
@@ -153,6 +158,16 @@ class MainFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+
+    // Скрыть клавиатуру и убирать фокус из View элемента
+    fun keybordHide(yourActivity: Activity, mSearchView: View) {
+        val inputMethodManager =
+            yourActivity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(
+            yourActivity.currentFocus?.getWindowToken(), 0)
+        mSearchView.post { mSearchView.clearFocus() }
     }
 
 }

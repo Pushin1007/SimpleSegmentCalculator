@@ -11,5 +11,6 @@
     <string name="enterOuterDiameter">Enter Outer Diameter in mm</string>
     <string name="ringWidthcannotbe0">Ring Width  cannot be 0, mm</string>
     <string name="enterRingWidth">Enter RingWidth in mm</string>
+    <string name="textToCalculate">Tap to Calculate</string>
 
 </resources>
