@@ -104,23 +104,18 @@ class MainFragment : Fragment() {
             } else {
                 Toast.makeText(parentActivity, R.string.enterRingWidth, Toast.LENGTH_SHORT).show()
             }
+
+
             // заполняем данными схему
             binding.calculateAngle.setText("$aGrad\u00B0") //u00B0  это знак радиуса
-
-            binding.calculateLength.setText(
-                String.format(
-                    "%.1f",
-                    calcLengthOfSegment(a2Rad, radiusBlank)
-                )
-            )
-            binding.calculateHeight.setText(
-                String.format(
-                    "%.1f", calcHeightOfSegment(a2Rad, radiusBlank, widthBlank)
-                )
-            )
-
+            binding.calculateLength.setText(doubleToString(calcLengthOfSegment(a2Rad, radiusBlank)))
+            binding.calculateHeight.setText(doubleToString(calcHeightOfSegment(a2Rad, radiusBlank, widthBlank)))
 
         }
+    }
+
+    private fun doubleToString(value: Double): String { //преобразование из Double  в String од ин знак после запятой
+        return String.format("%.1f", value)
     }
 
     private fun convertGradToRad(angleGrad: Double): Double { // конвертируем градусы в радианы
