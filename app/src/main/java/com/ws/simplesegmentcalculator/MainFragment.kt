@@ -1,5 +1,6 @@
 package com.ws.simplesegmentcalculator
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ class MainFragment : Fragment() {
     private var radiusBlank: Double = 0.0//наружный радиус заготовки с припуском
     private var widthBlank: Double = 0.0//ширина кольца (заготовки) с припуском
 
+    private lateinit var segment : Segment
 
     private lateinit var parentActivity: MainActivity // Получаем родительскую активити
     override fun onAttach(context: Context) {
@@ -39,8 +41,10 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.appCompatImageView.setOnClickListener {
 
             //получаем данные введенные пользователем
@@ -137,7 +141,7 @@ class MainFragment : Fragment() {
     // Вычисляем высоту сегмента
     private fun calcHeightOfSegment(angleRad: Double, radius: Double, width: Double): Double {
 
-        var innerRadius = radius - width
+        val innerRadius = radius - width
         val heightOfSegment = width + innerRadius - innerRadius * Math.cos(angleRad)
         return heightOfSegment
     }
