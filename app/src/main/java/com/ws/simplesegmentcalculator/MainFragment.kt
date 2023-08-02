@@ -6,15 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.ws.simplesegmentcalculator.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
-    private var aGrad: Double = 0.0
-    private var a: Double = 0.0
-    private var r: Double = 0.0
+    private var aGrad: Double = 0.0//угол сегмента в градусах
+    private var a2Rad: Double = 0.0 //половинный угол сегмента в радианах
+    private var radiusBlank: Double = 0.0//наружный радиус заготовки с припуском
+    private var widthBlank: Double = 0.0//ширина кольца (заготовки) с припуском
+
 
     private lateinit var parentActivity: MainActivity // Получаем родительскую активити
     override fun onAttach(context: Context) {
@@ -42,45 +43,108 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.appCompatImageView.setOnClickListener {
 
-            var outerDiameter = binding.inputOuterDiameterVal.text.toString().toDoubleOrNull()
-            var ringWidth = binding.inputRingWidthVal.text.toString().toDoubleOrNull()
-            var AllowancePerSide = binding.inputAllowancePerSideVal.text.toString().toDoubleOrNull()
-            var countSegment = binding.inputCountSegmentVal.text.toString().toIntOrNull()
+            //получаем данные введенные пользователем
+            val outerDiameter =
+                binding.inputOuterDiameterVal.text.toString().toDoubleOrNull() //наружный диаметр
+            val ringWidth =
+                binding.inputRingWidthVal.text.toString().toDoubleOrNull() // ширина кольца
+            var AllowancePerSide =
+                binding.inputAllowancePerSideVal.text.toString()
+                    .toDoubleOrNull() // припуск на обработку на сторону
+            val countSegment =
+                binding.inputCountSegmentVal.text.toString()
+                    .toIntOrNull() // количество сегментов в кольце
 
-
+//проверяем введенные данные
             if (countSegment != null) {
                 if (countSegment != 0) {
-                    aGrad = (360 / countSegment).toDouble()//угол сегмента в градусах
-                    a = aGrad * (Math.PI / 180) //угол сегмента в радианах
+                    aGrad = calcAngleOfSegment(countSegment) / 2
+                    a2Rad = convertGradToRad(aGrad)
                 } else {
-                    Toast.makeText(parentActivity, "not 0", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        parentActivity,
+                        R.string.сountOfSegmentcannotbe0,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } else {
-                Toast.makeText(parentActivity, "enter", Toast.LENGTH_SHORT).show()
+                Toast.makeText(parentActivity, R.string.enterCountOfSegment, Toast.LENGTH_SHORT)
+                    .show()
             }
 
             if (outerDiameter != null) {
                 if (outerDiameter != 0.0) {
-                    r = outerDiameter / 2
+                    radiusBlank = outerDiameter / 2
                 } else {
-                    Toast.makeText(parentActivity, "not 0", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        parentActivity,
+                        R.string.outerDiametercannotbe0,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } else {
-                Toast.makeText(parentActivity, "enter", Toast.LENGTH_SHORT).show()
+                Toast.makeText(parentActivity, R.string.enterOuterDiameter, Toast.LENGTH_SHORT)
+                    .show()
             }
 
-            binding.calculateAngle.setText("$aGrad\u00B0")
 
-            binding.calculateWidth.setText(String.format("%.1f", (2 * Math.tan(a / 2) * r)))
-            binding.calculateHeight.setText(
+            if (ringWidth != null) {
+                if (ringWidth != 0.0) {
+                    if (outerDiameter != null) {
+                        if (AllowancePerSide == null) {
+                            AllowancePerSide = 0.0
+                        }
+                        radiusBlank = outerDiameter / 2 + AllowancePerSide
+                        widthBlank = ringWidth + 2 * AllowancePerSide
+                    }
+                } else {
+                    Toast.makeText(parentActivity, R.string.ringWidthcannotbe0, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+                Toast.makeText(parentActivity, R.string.enterRingWidth, Toast.LENGTH_SHORT).show()
+            }
+            // заполняем данными схему
+            binding.calculateAngle.setText("$aGrad\u00B0") //u00B0  это знак радиуса
+
+            binding.calculateLength.setText(
                 String.format(
                     "%.1f",
-                    (r - (r - ringWidth!! * Math.cos(a / 2)))
+                    calcLengthOfSegment(a2Rad, radiusBlank)
+                )
+            )
+            binding.calculateHeight.setText(
+                String.format(
+                    "%.1f", calcHeightOfSegment(a2Rad, radiusBlank, widthBlank)
                 )
             )
 
 
         }
+    }
+
+    private fun convertGradToRad(angleGrad: Double): Double { // конвертируем градусы в радианы
+        return angleGrad * (Math.PI / 180)
+    }
+
+    // вычисляем угол сегмента в градусах
+    private fun calcAngleOfSegment(countSegment: Int): Double {
+        return (360 / countSegment).toDouble()
+    }
+
+    // Вычисляем длину сегмента
+    private fun calcLengthOfSegment(
+        angleRad: Double, radius: Double
+    ): Double {
+        return 2 * Math.tan(angleRad) * radius
+    }
+
+    // Вычисляем высоту сегмента
+    private fun calcHeightOfSegment(angleRad: Double, radius: Double, width: Double): Double {
+
+        var innerRadius = radius - width
+        val heightOfSegment = width + innerRadius - innerRadius * Math.cos(angleRad)
+        return heightOfSegment
     }
 
     companion object {
@@ -93,3 +157,5 @@ class MainFragment : Fragment() {
     }
 
 }
+
+

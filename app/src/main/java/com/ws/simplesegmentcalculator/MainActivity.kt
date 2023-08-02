@@ -18,8 +18,5 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.container, MainFragment.newInstance()).commit()
     }
 
-    override fun onResume() {
-        super.onResume()
 
-    }
 }

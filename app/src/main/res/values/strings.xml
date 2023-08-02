@@ -5,4 +5,11 @@
     <string name="width">Ring Width, mm</string>
     <string name="count">Count Segment, pcs</string>
     <string name="allowancePerSide">Side Allowance, mm</string>
+    <string name="сountOfSegmentcannotbe0">Count Of Segment  cannot be 0</string>
+    <string name="enterCountOfSegment">Enter Count Of Segment in mm</string>
+    <string name="outerDiametercannotbe0">Outer Diameter  cannot be 0</string>
+    <string name="enterOuterDiameter">Enter Outer Diameter in mm</string>
+    <string name="ringWidthcannotbe0">Ring Width  cannot be 0, mm</string>
+    <string name="enterRingWidth">Enter RingWidth in mm</string>
+
 </resources>
