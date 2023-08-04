@@ -12,5 +12,7 @@
     <string name="ringWidthcannotbe0">Ring Width  cannot be 0, mm</string>
     <string name="enterRingWidth">Enter RingWidth in mm</string>
     <string name="textToCalculate">Tap to Calculate</string>
+    <string name="button_info">What is DBSN?</string>
+    <string name="button_total_legth">What is Total Legth?</string>
 
 </resources>
