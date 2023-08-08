@@ -121,6 +121,12 @@ class MainFragment : Fragment() {
             binding.calculateHeight.setText(doubleToString(calcHeightOfSegment(a2Rad, radiusBlank, widthBlank)))
 
         }
+
+        binding.buttonInfo.setOnClickListener{
+            Toast.makeText(parentActivity, "ggg", Toast.LENGTH_SHORT).show()
+            parentFragmentManager.beginTransaction().addToBackStack("")
+                .replace(R.id.container, DbsnFragment.newInstance()).commit()
+        }
     }
 
     private fun doubleToString(value: Double): String { //преобразование из Double  в String од ин знак после запятой
@@ -169,6 +175,7 @@ class MainFragment : Fragment() {
             yourActivity.currentFocus?.getWindowToken(), 0)
         mSearchView.post { mSearchView.clearFocus() }
     }
+
 
 }
 
