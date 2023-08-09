@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:id="@+id/focus_conteiner"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -32,14 +31,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.80" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45" />
+        app:layout_constraintGuide_percent="0.50" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -54,21 +53,22 @@
         app:endIconMode="custom"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/inputRingWidth">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputOuterDiameterVal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="D"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@id/inputOuterDiameter"
         app:layout_constraintStart_toStartOf="@id/guideline3"
         app:layout_constraintTop_toTopOf="@id/inputOuterDiameter" />
@@ -80,26 +80,27 @@
         android:layout_height="wrap_content"
         android:hint="@string/width"
         android:padding="@dimen/padding_main"
+        app:boxStrokeColor="#6A6A6A"
         app:endIconCheckable="true"
         app:endIconMode="custom"
-        app:boxStrokeColor="#6A6A6A"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/inputOuterDiameter">
+        app:layout_constraintTop_toBottomOf="@id/inputOuterDiameter"
+        app:layout_constraintBottom_toTopOf="@id/inputAllowancePerSide">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputRingWidthVal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="B"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@id/inputRingWidth"
         app:layout_constraintStart_toStartOf="@id/guideline3"
         app:layout_constraintTop_toTopOf="@id/inputRingWidth" />
@@ -111,26 +112,27 @@
         android:layout_height="wrap_content"
         android:hint="@string/allowancePerSide"
         android:padding="@dimen/padding_main"
+        app:boxStrokeColor="#6A6A6A"
         app:endIconCheckable="true"
         app:endIconMode="custom"
-        app:boxStrokeColor="#6A6A6A"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/inputRingWidth">
+        app:layout_constraintTop_toBottomOf="@id/inputRingWidth"
+        app:layout_constraintBottom_toTopOf="@id/inputCountSegment">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputAllowancePerSideVal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="S"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@id/inputAllowancePerSide"
         app:layout_constraintStart_toStartOf="@id/guideline3"
         app:layout_constraintTop_toTopOf="@id/inputAllowancePerSide" />
@@ -142,26 +144,27 @@
         android:layout_height="wrap_content"
         android:hint="@string/count"
         android:padding="@dimen/padding_main"
+        app:boxStrokeColor="#6A6A6A"
         app:endIconCheckable="true"
         app:endIconMode="custom"
-        app:boxStrokeColor="#6A6A6A"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/inputAllowancePerSide">
+        app:layout_constraintTop_toBottomOf="@id/inputAllowancePerSide"
+        app:layout_constraintBottom_toTopOf="@id/guideline5">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputCountSegmentVal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="N"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="@id/inputCountSegment"
         app:layout_constraintStart_toStartOf="@id/guideline3"
         app:layout_constraintTop_toTopOf="@id/inputCountSegment" />
@@ -170,9 +173,10 @@
         android:id="@+id/appCompatImageView"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_marginTop="16dp"
+        android:padding="6dp"
+        android:layout_margin="5dp"
         android:src="@drawable/trap"
-
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@id/guideline4"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -186,14 +190,14 @@
         android:text="25"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/guideline4"
-        app:layout_constraintEnd_toEndOf="@id/guideline1"
+        app:layout_constraintStart_toStartOf="@id/guideline3"
         app:layout_constraintTop_toTopOf="@id/guideline5" />
 
     <TextView
         android:id="@+id/calculate_length"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="30dp"
         android:text="45"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/guideline4"
@@ -205,6 +209,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
+
         android:text="15"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
@@ -218,52 +223,49 @@
         android:id="@+id/textToCalculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
         android:text="@string/textToCalculate"
-        android:layout_marginTop="25dp"
-android:layout_marginStart="25dp"
         android:textSize="18sp"
-        app:layout_constraintTop_toTopOf="@id/guideline5"
         app:layout_constraintBottom_toBottomOf="@id/guideline4"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        />
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toTopOf="@id/guideline5" />
 
     <TextView
         android:id="@+id/textTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
         android:text="@string/textToCalculate"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="25dp"
         android:textSize="18sp"
-        app:layout_constraintTop_toTopOf="@id/guideline5"
         app:layout_constraintBottom_toBottomOf="@id/guideline4"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        />
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toTopOf="@id/guideline5" />
 
     <Button
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:id="@+id/button_info"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-android:layout_marginTop="20dp"
+        android:layout_marginTop="20dp"
         android:text="@string/button_info"
-        app:layout_constraintTop_toBottomOf="@id/guideline4"
         app:layout_constraintBottom_toTopOf="@id/button_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-       />
+        app:layout_constraintTop_toBottomOf="@id/guideline4" />
 
     <Button
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:id="@+id/c"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_total_legth"
-
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_info" />

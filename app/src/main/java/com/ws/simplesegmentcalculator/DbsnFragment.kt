@@ -24,11 +24,17 @@ class DbsnFragment : Fragment() {
         _binding = FragmentDbsnBinding.inflate(inflater, container, false)
         return binding.root
 
-        val actionBar: ActionBar? = (activity as MainActivity?)!!.supportActionBar
-        actionBar?.setHomeButtonEnabled(true)
-        actionBar?.setDisplayHomeAsUpEnabled(true)
+
+
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.buttonBackToMain.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.container, MainFragment.newInstance()).commit()
+        }
+    }
     companion object {
         fun newInstance(): DbsnFragment = DbsnFragment()
     }

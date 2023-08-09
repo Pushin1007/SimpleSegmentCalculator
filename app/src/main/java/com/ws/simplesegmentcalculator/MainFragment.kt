@@ -123,7 +123,7 @@ class MainFragment : Fragment() {
         }
 
         binding.buttonInfo.setOnClickListener{
-            Toast.makeText(parentActivity, "ggg", Toast.LENGTH_SHORT).show()
+           // Toast.makeText(parentActivity, "ggg", Toast.LENGTH_SHORT).show()
             parentFragmentManager.beginTransaction().addToBackStack("")
                 .replace(R.id.container, DbsnFragment.newInstance()).commit()
         }

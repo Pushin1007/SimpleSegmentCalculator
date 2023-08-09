@@ -14,5 +14,17 @@
     <string name="textToCalculate">Tap to Calculate</string>
     <string name="button_info">What is DBSN?</string>
     <string name="button_total_legth">What is Total Legth?</string>
+    <string name="description_d">D - The outer finish diameter of the ring to be make.
+        The maximum diameter of the ring in your product. Measured in millimeters.</string>
+    <string name="description_b">B - The width of the ring, excluding machining allowances.
+        Measured in millimeters.</string>
+    <string name="description_s">S - Side allowance, inside and outside.
+        It is used to compensate for displacement during gluing,
+        as well as a safety spase in turning.
+        Measured in millimeters. Usually 1mm to 3mm is enough</string>
+    <string name="description_n">N - The number of segments into which the ring is divided.
+        Usually from 4 to 96 pices.</string>
+    <string name="back_to_calculator">Back to Calculator</string>
 
 </resources>
+

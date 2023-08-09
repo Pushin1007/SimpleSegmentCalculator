@@ -1,0 +1,30 @@
+<resources>
+
+    <string name="diameter">Внешний Диаметр, мм</string>
+    <string name="diameter_helper_text">Внешний Диаметр, мм</string>
+    <string name="width">Ширина кольца, мм</string>
+    <string name="count">Количество сегментов, шт</string>
+    <string name="allowancePerSide">Припуск на сторону, мм</string>
+    <string name="сountOfSegmentcannotbe0">Количество сегментов не может быть 0</string>
+    <string name="enterCountOfSegment">Введите количество сегментов в мм</string>
+    <string name="outerDiametercannotbe0">Наружный диаметр не может быть 0</string>
+    <string name="enterOuterDiameter">Введите наружный диаметр в мм</string>
+    <string name="ringWidthcannotbe0">Ширина кольца не может быть 0</string>
+    <string name="enterRingWidth">Введите ширину экрана в мм</string>
+    <string name="textToCalculate">Нажми для рассчета</string>
+    <string name="button_info">Что такое DBSN?</string>
+    <string name="button_total_legth">Что такое общая длина?</string>
+    <string name="description_d">D  - Наружный чистовой диаметр кольца, который требуется получить.
+        Максимальный диаметр кольца в Вашем изделии. Измеряется в миллиметрах. </string>
+    <string name="description_b">B - Ширирина кольца, не учитывающая припуски на обработку.
+        Имеряется в миллиметрах. </string>
+    <string name="description_s">S - Припуск на сторону, внутри и снаружи.
+        Применяется для компенсации смещения при склеивании,
+        а также как страховочный запас при обработке.
+        Измеряется в миллиметрах. Обычно достаточно от 1 мм до 3мм</string>
+    <string name="description_n">N - Количество сегментов на которые разбивается кольцо.
+        Обычно от 4 до 96.</string>
+    <string name="back_to_calculator">Назад к калькулятору</string>
+
+</resources>
+
