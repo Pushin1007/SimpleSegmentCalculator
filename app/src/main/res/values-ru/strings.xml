@@ -29,5 +29,7 @@
     <string name="description_total_legth">Общая длина - это минимальная длина заготовки,
          необходимая для изготовления кольца. Учитывается ширина пропила (стандартный диск 3,5мм)
         и минимально безопастный остаток длиной 100мм.</string>
+    <string name="textTotalLegth">Общая длина - </string>
+    <string name="mm">мм</string>
 </resources>
 

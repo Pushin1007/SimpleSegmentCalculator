@@ -18,7 +18,7 @@ class DialogFragmentTotalLegth : DialogFragment() {
         dialog.setView(view)
         dialog.setMessage(R.string.title_total_legth)
             .setPositiveButton("Ok", DialogInterface.OnClickListener { dialogInterface, i ->
-                Log.d("mylogs", "Пользователь прочитал что такое длина$i")
+                Log.d("mylogs", "Пользователь прочитал что такое общая длина$i")
                 dismiss()
             })
         return dialog.create()
