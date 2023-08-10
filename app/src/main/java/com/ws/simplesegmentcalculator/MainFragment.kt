@@ -15,14 +15,17 @@ import com.ws.simplesegmentcalculator.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
 
+
+    private var countSegment: Int? = 0 // Количество сегментов
     private var aGrad: Double = 0.0//угол сегмента в градусах
     private var a2Rad: Double = 0.0 //половинный угол сегмента в радианах
     private var radiusBlank: Double = 0.0//наружный радиус заготовки с припуском
     private var widthBlank: Double = 0.0//ширина кольца (заготовки) с припуском
+    private var legthSegment: Double = 0.0//Длина сегмента
+    private var widthSegment: Double = 0.0//Высота сегмента
+    private var totalLegth: Double = 0.0//минимальная длина заготовки
 
-
-
-    private lateinit var segment : Segment
+    private lateinit var segment: Segment
 
     private lateinit var parentActivity: MainActivity // Получаем родительскую активити
     override fun onAttach(context: Context) {
@@ -51,7 +54,10 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.appCompatImageView.setOnClickListener {
-            keybordHide(parentActivity,binding.focusConteiner)// скрываем клавиатуру и убираем фокус
+            keybordHide(
+                parentActivity,
+                binding.focusConteiner
+            )// скрываем клавиатуру и убираем фокус
             //получаем данные введенные пользователем
             val outerDiameter =
                 binding.inputOuterDiameterVal.text.toString().toDoubleOrNull() //наружный диаметр
@@ -60,14 +66,15 @@ class MainFragment : Fragment() {
             var AllowancePerSide =
                 binding.inputAllowancePerSideVal.text.toString()
                     .toDoubleOrNull() // припуск на обработку на сторону
-            val countSegment =
+            countSegment =
                 binding.inputCountSegmentVal.text.toString()
                     .toIntOrNull() // количество сегментов в кольце
 
 //проверяем введенные данные
             if (countSegment != null) {
                 if (countSegment != 0) {
-                    aGrad = calcAngleOfSegment(countSegment) / 2
+
+                    aGrad = calcAngleOfSegment(countSegment!!) / 2
                     a2Rad = convertGradToRad(aGrad)
                 } else {
                     Toast.makeText(
@@ -114,18 +121,33 @@ class MainFragment : Fragment() {
                 Toast.makeText(parentActivity, R.string.enterRingWidth, Toast.LENGTH_SHORT).show()
             }
 
+            legthSegment = calcLengthOfSegment(a2Rad, radiusBlank)
+            widthSegment = calcHeightOfSegment(a2Rad, radiusBlank, widthBlank)
+            totalLegth = calcTotalLegth(countSegment!!, a2Rad, legthSegment, widthSegment)
 
+            val totalLegthString: String =
+                getString(R.string.textTotalLegth) +
+                        " " +
+                        doubleToString(totalLegth) +
+                        " " +
+                        getString(R.string.mm)
             // заполняем данными схему
             binding.calculateAngle.setText("$aGrad\u00B0") //u00B0  это знак радиуса
-            binding.calculateLength.setText(doubleToString(calcLengthOfSegment(a2Rad, radiusBlank)))
-            binding.calculateHeight.setText(doubleToString(calcHeightOfSegment(a2Rad, radiusBlank, widthBlank)))
+            binding.calculateLength.setText(doubleToString(legthSegment))
+            binding.calculateHeight.setText(doubleToString(widthSegment))
+            binding.textTotal.setText(totalLegthString)
 
         }
 
-        binding.buttonInfo.setOnClickListener{
-           // Toast.makeText(parentActivity, "ggg", Toast.LENGTH_SHORT).show()
-            parentFragmentManager.beginTransaction().addToBackStack("")
+        binding.buttonInfo.setOnClickListener {
+            // Toast.makeText(parentActivity, "ggg", Toast.LENGTH_SHORT).show()
+            parentFragmentManager.beginTransaction()
                 .replace(R.id.container, DbsnFragment.newInstance()).commit()
+        }
+
+        binding.buttonTotalLegthInfo.setOnClickListener {
+            val dialogFragmentTotalLegth = DialogFragmentTotalLegth()
+            dialogFragmentTotalLegth.show(childFragmentManager, "TAG")
         }
     }
 
@@ -157,6 +179,19 @@ class MainFragment : Fragment() {
         return heightOfSegment
     }
 
+    // Вычисляем высоту сегмента
+    private fun calcTotalLegth(
+        countSegment: Int,
+        angleRad: Double,
+        legthSegment: Double,
+        widthSegment: Double
+    ): Double {
+        val a = legthSegment - widthSegment * Math.tan(angleRad)
+        val b = 3.5 * Math.cos(angleRad)
+
+        return (countSegment + 1) * a + countSegment * b + 100
+    }
+
     companion object {
         fun newInstance(): MainFragment = MainFragment()
     }
@@ -172,7 +207,8 @@ class MainFragment : Fragment() {
         val inputMethodManager =
             yourActivity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(
-            yourActivity.currentFocus?.getWindowToken(), 0)
+            yourActivity.currentFocus?.getWindowToken(), 0
+        )
         mSearchView.post { mSearchView.clearFocus() }
     }
 

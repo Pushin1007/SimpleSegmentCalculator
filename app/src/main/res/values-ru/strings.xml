@@ -25,6 +25,9 @@
     <string name="description_n">N - Количество сегментов на которые разбивается кольцо.
         Обычно от 4 до 96.</string>
     <string name="back_to_calculator">Назад к калькулятору</string>
-
+    <string name="title_total_legth">Что такое общая длина?</string>
+    <string name="description_total_legth">Общая длина - это минимальная длина заготовки,
+         необходимая для изготовления кольца. Учитывается ширина пропила (стандартный диск 3,5мм)
+        и минимально безопастный остаток длиной 100мм.</string>
 </resources>
 

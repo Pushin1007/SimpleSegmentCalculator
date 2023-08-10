@@ -13,13 +13,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        actionBar?.setHomeButtonEnabled(true)
+       // actionBar?.setHomeButtonEnabled(true)
         // add in conteiner MainFragment
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, MainFragment.newInstance()).commit()
-        actionBar?.setHomeButtonEnabled(true)
+       // actionBar?.setHomeButtonEnabled(true)
     }
-
+/*
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+ */
     /*
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_total_legth"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_margin="@dimen/margin5"
+        android:scaleType="centerInside"
+        android:src="@drawable/total_legth" />
+
+    <TextView
+        android:id="@+id/description_total_legth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin5"
+        android:layout_margin="@dimen/margin5"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:text="@string/description_total_legth" />
+</LinearLayout>

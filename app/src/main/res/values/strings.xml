@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Simple Segment Сalculator</string>
+    <string name="app_name" translatable="false">Simple Segment Сalculator</string>
     <string name="diameter">Outer Diameter, mm</string>
     <string name="diameter_helper_text">Outer Diameter, mm</string>
     <string name="width">Ring Width, mm</string>
@@ -25,6 +25,12 @@
     <string name="description_n">N - The number of segments into which the ring is divided.
         Usually from 4 to 96 pices.</string>
     <string name="back_to_calculator">Back to Calculator</string>
-
+    <string name="title_total_legth">What is Total Legth?</string>
+    <string name="description_total_legth">The Total length is the minimum length of the woodpiece,
+          needed to make the ring.
+        Cutting width equal to the thickness of a standard saw blade 3.5mm
+         and a minimum safe length of 100mm.</string>
+    <string name="textTotalLegth">Total Legth - </string>
+    <string name="mm">mm</string>
 </resources>
 

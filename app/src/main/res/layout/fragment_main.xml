@@ -31,14 +31,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.80" />
+        app:layout_constraintGuide_percent="0.75" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.50" />
+        app:layout_constraintGuide_percent="0.45" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -227,7 +227,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
         android:text="@string/textToCalculate"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/guideline4"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -238,14 +238,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginEnd="10dp"
-        android:text="@string/textToCalculate"
+        android:text="@string/textTotalLegth"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@id/guideline4"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toTopOf="@id/guideline5" />
+        app:layout_constraintBottom_toTopOf="@id/button_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline4"  />
 
     <Button
         android:id="@+id/button_info"
@@ -254,18 +254,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/button_info"
-        app:layout_constraintBottom_toTopOf="@id/button_info"
+        app:layout_constraintBottom_toTopOf="@id/button_total_legth_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline4" />
 
     <Button
-        android:id="@+id/c"
+        android:id="@+id/button_total_legth_info"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_total_legth"
-        android:visibility="gone"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_info" />
