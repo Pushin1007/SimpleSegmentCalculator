@@ -84,6 +84,7 @@ class MainFragment : Fragment() {
                     ).show()
                 }
             } else {
+                countSegment = 0
                 Toast.makeText(parentActivity, R.string.enterCountOfSegment, Toast.LENGTH_SHORT)
                     .show()
             }
