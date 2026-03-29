@@ -19,32 +19,5 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.container, MainFragment.newInstance()).commit()
        // actionBar?.setHomeButtonEnabled(true)
     }
-/*
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                super.onBackPressed()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
- */
-    /*
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
-
-
-    fun onBackStackChanged() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        } else {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-        }
-    }
-
-     */
 }

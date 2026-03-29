@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.ws.simplesegmentcalculator"
-    compileSdk = 33
+    compileSdk = 36
 
     // add  viewBinding
     buildFeatures {
@@ -15,9 +15,9 @@ android {
     defaultConfig {
         applicationId = "com.ws.simplesegmentcalculator"
         minSdk = 23
-        targetSdk = 33
-        versionCode = 3
-        versionName = "1.2"
+        targetSdk = 36
+        versionCode = 6
+        versionName = "1.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
