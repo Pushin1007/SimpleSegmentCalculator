@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleSegmentСalculator"
         android:screenOrientation="portrait"
-        tools:targetApi="34">
+        tools:targetApi="36"
+        tools:ignore="DiscouragedApi">
         <activity
             android:name=".MainActivity"
             android:exported="true">
