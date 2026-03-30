@@ -13,6 +13,8 @@
     <string name="enterRingWidth">Введите ширину экрана в мм</string>
     <string name="textToCalculate">Нажми для рассчета</string>
     <string name="button_info">Что такое DBSN?</string>
+    <string name="button_inch">мм/дюйм</string>
+    <string name="inch">дюйм</string>
     <string name="button_total_legth">Что такое общая длина?</string>
     <string name="description_d">D  - Наружный чистовой диаметр кольца, который требуется получить.
         Максимальный диаметр кольца в изделии. Измеряется в миллиметрах. </string>

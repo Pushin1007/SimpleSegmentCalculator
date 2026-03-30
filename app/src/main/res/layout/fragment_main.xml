@@ -249,17 +249,32 @@
         app:layout_constraintTop_toBottomOf="@id/guideline4"  />
 
     <Button
+        android:id="@+id/button_inch"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/button_inch"
+        app:layout_constraintBottom_toTopOf="@id/button_total_legth_info"
+        app:layout_constraintEnd_toStartOf="@+id/button_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline4" />
+
+
+    <Button
         android:id="@+id/button_info"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:text="@string/button_info"
         app:layout_constraintBottom_toTopOf="@id/button_total_legth_info"
+        app:layout_constraintStart_toEndOf="@+id/button_inch"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline4" />
 
+        app:layout_constraintTop_toBottomOf="@id/guideline4" />
 
     <Button
         android:id="@+id/button_total_legth_info"
