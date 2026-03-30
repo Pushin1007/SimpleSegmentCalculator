@@ -13,20 +13,21 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.ws.simplesegmentcalculator.databinding.FragmentMainBinding
-
+import androidx.core.content.edit
+import androidx.core.graphics.toColorInt
+import java.util.Locale
 
 class MainFragment : Fragment() {
 
-    private var countSegment: Int? = 0 // Количество сегментов
-    private var aGrad: Double = 0.0        // угол сегмента в градусах
-    private var a2Rad: Double = 0.0        // половинный угол сегмента в радианах
-    private var radiusBlank: Double = 0.0  // наружный радиус заготовки с припуском
-    private var widthBlank: Double = 0.0   // ширина кольца (заготовки) с припуском
-    private var legthSegment: Double = 0.0 // Длина сегмента
-    private var widthSegment: Double = 0.0 // Высота сегмента
-    private var totalLegth: Double = 0.0   // минимальная длина заготовки
+    private var countSegment: Int? = 0
+    private var aGrad: Double = 0.0
+    private var a2Rad: Double = 0.0
+    private var radiusBlank: Double = 0.0
+    private var widthBlank: Double = 0.0
+    private var legthSegment: Double = 0.0
+    private var widthSegment: Double = 0.0
+    private var totalLegth: Double = 0.0
 
-    // true = дюймы, false = миллиметры
     private var isInchMode: Boolean = false
 
     private lateinit var prefs: SharedPreferences
@@ -36,7 +37,6 @@ class MainFragment : Fragment() {
     companion object {
         private const val PREFS_NAME = "calculator_prefs"
         private const val KEY_INCH_MODE = "inch_mode"
-
         private const val MM_TO_INCH = 1.0 / 25.4
         private const val INCH_TO_MM = 25.4
 
@@ -66,35 +66,33 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Восстанавливаем сохранённое состояние кнопки
+        // Восстанавливаем сохранённое состояние
         isInchMode = prefs.getBoolean(KEY_INCH_MODE, false)
-        updateInchButtonAppearance()
+        updateUiForMode()
 
         // Кнопка переключения мм / дюймы
         binding.buttonInch.setOnClickListener {
             isInchMode = !isInchMode
-            prefs.edit().putBoolean(KEY_INCH_MODE, isInchMode).apply()
-            updateInchButtonAppearance()
+            prefs.edit { putBoolean(KEY_INCH_MODE, isInchMode) }
+            updateUiForMode()
         }
 
         // Нажатие на схему — расчёт
         binding.appCompatImageView.setOnClickListener {
             keybordHide(parentActivity, binding.focusConteiner)
 
-            // Считываем введённые значения
             var outerDiameter = binding.inputOuterDiameterVal.text.toString().toDoubleOrNull()
             var ringWidth = binding.inputRingWidthVal.text.toString().toDoubleOrNull()
             var allowancePerSide = binding.inputAllowancePerSideVal.text.toString().toDoubleOrNull()
             countSegment = binding.inputCountSegmentVal.text.toString().toIntOrNull()
 
-            // Если режим дюймов — переводим входные данные в мм для расчёта
+            // Переводим дюймы → мм для расчёта
             if (isInchMode) {
                 outerDiameter = outerDiameter?.times(INCH_TO_MM)
                 ringWidth = ringWidth?.times(INCH_TO_MM)
                 allowancePerSide = allowancePerSide?.times(INCH_TO_MM)
             }
 
-            // Проверяем количество сегментов
             if (countSegment != null) {
                 if (countSegment != 0) {
                     aGrad = calcAngleOfSegment(countSegment!!) / 2
@@ -107,7 +105,6 @@ class MainFragment : Fragment() {
                 Toast.makeText(parentActivity, R.string.enterCountOfSegment, Toast.LENGTH_SHORT).show()
             }
 
-            // Проверяем наружный диаметр
             if (outerDiameter != null) {
                 if (outerDiameter != 0.0) {
                     radiusBlank = outerDiameter / 2
@@ -115,10 +112,10 @@ class MainFragment : Fragment() {
                     Toast.makeText(parentActivity, R.string.outerDiametercannotbe0, Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(parentActivity, R.string.enterOuterDiameter, Toast.LENGTH_SHORT).show()
+                val msgRes = if (isInchMode) R.string.enterOuterDiameter_inch else R.string.enterOuterDiameter_mm
+                Toast.makeText(parentActivity, msgRes, Toast.LENGTH_SHORT).show()
             }
 
-            // Проверяем ширину кольца
             if (ringWidth != null) {
                 if (ringWidth != 0.0) {
                     if (outerDiameter != null) {
@@ -130,27 +127,28 @@ class MainFragment : Fragment() {
                     Toast.makeText(parentActivity, R.string.ringWidthcannotbe0, Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(parentActivity, R.string.enterRingWidth, Toast.LENGTH_SHORT).show()
+                val msgRes = if (isInchMode) R.string.enterRingWidth_inch else R.string.enterRingWidth_mm
+                Toast.makeText(parentActivity, msgRes, Toast.LENGTH_SHORT).show()
             }
 
-            // Вычисляем результаты (всегда в мм внутри)
+            // Расчёт (внутри всегда в мм)
             legthSegment = calcLengthOfSegment(a2Rad, radiusBlank)
             widthSegment = calcHeightOfSegment(a2Rad, radiusBlank, widthBlank)
             totalLegth = calcTotalLegth(countSegment!!, a2Rad, legthSegment, widthSegment)
 
-            // Если режим дюймов — переводим результаты обратно в дюймы для отображения
+            // Переводим мм → дюймы для отображения если нужно
             val displayLength = if (isInchMode) legthSegment * MM_TO_INCH else legthSegment
-            val displayWidth = if (isInchMode) widthSegment * MM_TO_INCH else widthSegment
-            val displayTotal = if (isInchMode) totalLegth * MM_TO_INCH else totalLegth
+            val displayWidth  = if (isInchMode) widthSegment * MM_TO_INCH else widthSegment
+            val displayTotal  = if (isInchMode) totalLegth  * MM_TO_INCH else totalLegth
             val unitLabel = if (isInchMode) getString(R.string.inch) else getString(R.string.mm)
 
-            val totalLegthString = getString(R.string.textTotalLegth) + " " +
+            val totalLegthString = getString(R.string.textTotalLegth) +
                     doubleToString(displayTotal) + " " + unitLabel
 
-            binding.calculateAngle.setText("$aGrad\u00B0")
-            binding.calculateLength.setText(doubleToString(displayLength))
-            binding.calculateHeight.setText(doubleToString(displayWidth))
-            binding.textTotal.setText(totalLegthString)
+            binding.calculateAngle.text  = "$aGrad\u00B0"
+            binding.calculateLength.text = doubleToString(displayLength)
+            binding.calculateHeight.text = doubleToString(displayWidth)
+            binding.textTotal.text       = totalLegthString
         }
 
         binding.buttonInfo.setOnClickListener {
@@ -159,39 +157,42 @@ class MainFragment : Fragment() {
         }
 
         binding.buttonTotalLegthInfo.setOnClickListener {
-            val dialogFragmentTotalLegth = DialogFragmentTotalLegth()
-            dialogFragmentTotalLegth.show(childFragmentManager, "TAG")
+            DialogFragmentTotalLegth().show(childFragmentManager, "TAG")
         }
     }
 
-    /** Обновляем внешний вид кнопки в зависимости от режима */
-    private fun updateInchButtonAppearance() {
+    /**
+     * Обновляет подписи полей ввода, вид кнопки и единицы измерения
+     * в зависимости от текущего режима (мм или дюймы).
+     */
+    private fun updateUiForMode() {
         if (isInchMode) {
-            // Режим дюймов — кнопка светло-серая, текст тёмный
-            binding.buttonInch.setBackgroundColor(Color.parseColor("#CCCCCC"))
-            binding.buttonInch.setTextColor(Color.parseColor("#333333"))
+            binding.inputOuterDiameter.hint    = getString(R.string.diameter_inch)
+            binding.inputRingWidth.hint        = getString(R.string.width_inch)
+            binding.inputAllowancePerSide.hint = getString(R.string.allowancePerSide_inch)
+
+            // Кнопка светло-серая — режим дюймов активен
+            binding.buttonInch.setBackgroundColor("#CCCCCC".toColorInt())
+            binding.buttonInch.setTextColor("#333333".toColorInt())
         } else {
-            // Режим мм — кнопка прозрачная (стандартный outlined стиль)
+            binding.inputOuterDiameter.hint    = getString(R.string.diameter_mm)
+            binding.inputRingWidth.hint        = getString(R.string.width_mm)
+            binding.inputAllowancePerSide.hint = getString(R.string.allowancePerSide_mm)
+
+            // Кнопка прозрачная — режим мм
             binding.buttonInch.setBackgroundColor(Color.TRANSPARENT)
-            binding.buttonInch.setTextColor(Color.parseColor("#6A6A6A"))
+            binding.buttonInch.setTextColor("#6A6A6A".toColorInt())
         }
     }
 
-    private fun doubleToString(value: Double): String {
-        return String.format("%.1f", value)
-    }
+    private fun doubleToString(value: Double) = String.format(Locale.getDefault(), "%.1f", value)
 
-    private fun convertGradToRad(angleGrad: Double): Double {
-        return angleGrad * (Math.PI / 180)
-    }
+    private fun convertGradToRad(angleGrad: Double) = angleGrad * (Math.PI / 180)
 
-    private fun calcAngleOfSegment(countSegment: Int): Double {
-        return (360 / countSegment).toDouble()
-    }
+    private fun calcAngleOfSegment(countSegment: Int) = (360 / countSegment).toDouble()
 
-    private fun calcLengthOfSegment(angleRad: Double, radius: Double): Double {
-        return 2 * Math.tan(angleRad) * radius
-    }
+    private fun calcLengthOfSegment(angleRad: Double, radius: Double) =
+        2 * Math.tan(angleRad) * radius
 
     private fun calcHeightOfSegment(angleRad: Double, radius: Double, width: Double): Double {
         val innerRadius = radius - width
@@ -199,10 +200,8 @@ class MainFragment : Fragment() {
     }
 
     private fun calcTotalLegth(
-        countSegment: Int,
-        angleRad: Double,
-        legthSegment: Double,
-        widthSegment: Double
+        countSegment: Int, angleRad: Double,
+        legthSegment: Double, widthSegment: Double
     ): Double {
         val a = legthSegment - widthSegment * Math.tan(angleRad)
         val b = 3.5 * Math.cos(angleRad)

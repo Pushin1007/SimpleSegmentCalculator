@@ -1,37 +1,53 @@
 <resources>
+    <string name="diameter">Наружный диаметр</string>
+    <string name="width">Ширина кольца</string>
+    <string name="allowancePerSide">Припуск на сторону</string>
+    <!-- Подписи полей ввода — мм -->
+    <string name="diameter_mm">Внешний Диаметр, мм</string>
+    <string name="width_mm">Ширина кольца, мм</string>
+    <string name="allowancePerSide_mm">Припуск на сторону, мм</string>
 
-    <string name="diameter">Внешний Диаметр, мм</string>
-    <string name="diameter_helper_text">Внешний Диаметр, мм</string>
-    <string name="width">Ширина кольца, мм</string>
+    <!-- Подписи полей ввода — дюймы -->
+    <string name="diameter_inch">Внешний Диаметр, дюйм</string>
+    <string name="width_inch">Ширина кольца, дюйм</string>
+    <string name="allowancePerSide_inch">Припуск на сторону, дюйм</string>
+
+    <!-- Общие подписи -->
     <string name="count">Количество сегментов, шт</string>
-    <string name="allowancePerSide">Припуск на сторону, мм</string>
-    <string name="сountOfSegmentcannotbe0">Количество сегментов не может быть 0</string>
-    <string name="enterCountOfSegment">Введите количество сегментов в мм</string>
-    <string name="outerDiametercannotbe0">Наружный диаметр не может быть 0</string>
-    <string name="enterOuterDiameter">Введите наружный диаметр в мм</string>
-    <string name="ringWidthcannotbe0">Ширина кольца не может быть 0</string>
-    <string name="enterRingWidth">Введите ширину экрана в мм</string>
-    <string name="textToCalculate">Нажми для рассчета</string>
     <string name="button_info">Что такое DBSN?</string>
-    <string name="button_inch">мм/дюйм</string>
-    <string name="inch">дюйм</string>
+    <string name="button_inch">мм / дюйм</string>
     <string name="button_total_legth">Что такое общая длина?</string>
-    <string name="description_d">D  - Наружный чистовой диаметр кольца, который требуется получить.
-        Максимальный диаметр кольца в изделии. Измеряется в миллиметрах. </string>
-    <string name="description_b">B - Ширирина кольца, не учитывающая припуски на обработку.
-        Имеряется в миллиметрах. </string>
-    <string name="description_s">S - Припуск на сторону, внутри и снаружи.
-        Применяется для компенсации смещения при склеивании,
-        а также как страховочный запас при обработке.
-        Измеряется в миллиметрах. Обычно достаточно от 1 мм до 3мм</string>
-    <string name="description_n">N - Количество сегментов на которые разбивается кольцо.
-        Обычно от 4 до 96.</string>
     <string name="back_to_calculator">Назад к калькулятору</string>
-    <string name="title_total_legth">Что такое общая длина?</string>
-    <string name="description_total_legth">Общая длина - это минимальная длина заготовки,
-         необходимая для изготовления кольца. Учитывается ширина пропила (стандартный диск 3,5мм)
-        и минимально безопастный остаток длиной 100мм.</string>
-    <string name="textTotalLegth">Общая длина - </string>
+    <string name="textToCalculate">Нажми для расчёта</string>
+    <string name="textTotalLegth">Общая длина — </string>
     <string name="mm">мм</string>
-</resources>
+    <string name="inch">дюйм</string>
 
+    <!-- Сообщения об ошибках — мм -->
+    <string name="сountOfSegmentcannotbe0">Количество сегментов не может быть 0</string>
+    <string name="enterCountOfSegment">Введите количество сегментов</string>
+    <string name="outerDiametercannotbe0">Наружный диаметр не может быть 0</string>
+    <string name="enterOuterDiameter_mm">Введите наружный диаметр в мм</string>
+    <string name="ringWidthcannotbe0">Ширина кольца не может быть 0</string>
+    <string name="enterRingWidth_mm">Введите ширину кольца в мм</string>
+
+    <!-- Сообщения об ошибках — дюймы -->
+    <string name="enterOuterDiameter_inch">Введите наружный диаметр в дюймах</string>
+    <string name="enterRingWidth_inch">Введите ширину кольца в дюймах</string>
+
+    <!-- Описания параметров (экран DBSN) -->
+    <string name="description_d">D — Наружный чистовой диаметр кольца, который требуется получить.
+        Максимальный диаметр кольца в миллиметрах (дюймах) в изделии.</string>
+    <string name="description_b">B — Ширина кольца в миллиметрах (дюймах), не учитывающая припуски на обработку.
+        </string>
+    <string name="description_s">S — Припуск на сторону, внутри и снаружи.
+        Применяется для компенсации смещения при склеивании,
+        а также как страховочный запас при обработке. Обычно достаточно от 1мм-3мм (0.04\u0022 - 0.12\u0022).</string>
+    <string name="description_n">N — Количество сегментов, на которые разбивается кольцо.
+        Обычно от 4 до 96.</string>
+    <string name="title_total_legth">Что такое общая длина?</string>
+    <string name="description_total_legth">Общая длина — это минимальная длина заготовки,
+        необходимая для изготовления кольца. Учитывается ширина пропила 3,5мм(0.138\u0022)
+        и минимально безопасный остаток длиной 100 мм (4\u0022).</string>
+
+</resources>
